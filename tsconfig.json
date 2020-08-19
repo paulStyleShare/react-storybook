@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react",
+    "sourceMap": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "~assets/*": ["assets/*"],
+      "~components/*": ["components/*"],
+      "~containers/*": ["containers/*"],
+      "~contexts/*": ["contexts/*"],
+      "~hoc/*": ["hoc/*"],
+      "~pages/*": ["pages/*"],
+      "~hooks/*": ["hooks/*"],
+      "~schemas/*": ["schemas/*"],
+      "~shared/*": ["shared/*"],
+      "~services/*": ["services/*"],
+      "~styles/*": ["styles/*"],
+      "~reduxes/*": ["store/reduxes/*"],
+      "~utils/*": ["utils/*"],
+      "~heads/*": ["heads/*"]
+    },
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    // "noImplicitAny": false,
+    "resolveJsonModule": true
+  }
+}

@@ -1,0 +1,6 @@
+translation_scripts/*
+node_modules/*
+/static/
+/assets/
+cypress/*
+ecosystem.config.js

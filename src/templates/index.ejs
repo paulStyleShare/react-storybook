@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+  <head>
+    <meta charSet="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <meta name="application-name" content="StyleShare" />
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta name="fragment" content="!" />
+
+    <meta name="supported-color-schemes" content="light" />
+    <meta name="color-scheme" content="light" />
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- preconnect 힌트를 제공함으로써 서버 연결에 걸리는 시간을 단축합니다. -->
+    <link
+      rel="preconnect"
+      href="https://web-frontend.styleshare.io"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://assets.styleshare.io/" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://usercontents-c.styleshare.io"
+      crossorigin
+    />
+
+    <!-- DNS prefetch는 preconnect의 fallback으로 작동합니다. -->
+    <link rel="dns-prefetch" href="https://web-frontend.styleshare.io" />
+    <link rel="dns-prefetch" href="https://assets.styleshare.io/" />
+    <link rel="dns-prefetch" href="https://usercontents-c.styleshare.io" />
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <div id="modal-portal"></div>
+    <div id="toast-portal"></div>
+    <div id="drawer-portal"></div>
+    <script>
+      window.prerenderReady = false;
+    </script>
+  </body>
+</html>
