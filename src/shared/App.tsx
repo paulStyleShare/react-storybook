@@ -5,9 +5,9 @@ import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { Box } from '~components/common';
+import { Img } from '~components/Picture';
 import Home from '~pages/Home';
 import { lightTheme as desktopLightTheme } from '~styles/theme/desktop';
-
 const Container = styled(Box)(
   {
     borderRadius: '16px',
@@ -41,7 +41,6 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={desktopLightTheme}>
-        {/* <ModalProvider> */}
         <Container
           style={{
             height: '100vh',
@@ -52,9 +51,9 @@ class App extends Component {
         >
           HOME
           <Home />
+          <Img src={'iconArrowBack.png'} />
           {/* <Route component={Home} path="/" exact /> */}
         </Container>
-        {/* </ModalProvider> */}
       </ThemeProvider>
     );
   }

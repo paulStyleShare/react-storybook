@@ -164,3 +164,4 @@ $RECYCLE.BIN/
 
 ### JetBrains Tools
 .idea/
+package-lock.json

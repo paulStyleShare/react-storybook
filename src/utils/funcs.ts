@@ -190,7 +190,9 @@ export function numberScale(value: number): string {
   return `${isNagative ? '-' : ''}${num}${suffix}`;
 }
 
-export const imgSrcSet = (path: string): string => {
+export const imgSrcSet = (path: string, rootDir = './assets/'): string => {
   const [fileName, fileExtension] = path.split('.');
-  return `${fileName}.${fileExtension} 1x, ${fileName}@2x.${fileExtension} 2x, ${fileName}@3x.${fileExtension} 3x`;
+  return `${rootDir + fileName}.${fileExtension} 1x, ${
+    rootDir + fileName
+  }@2x.${fileExtension} 2x, ${rootDir + fileName}@3x.${fileExtension} 3x`;
 };

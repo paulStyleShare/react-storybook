@@ -5,16 +5,17 @@ import { imgSrcSet } from '~utils/funcs';
 import Picture, { PictureProps } from './Picture';
 type Props = {
   src: string;
-  rootDir: string;
-  optimized: string[];
-  imageId: number | string;
-  imageHeight: number;
-  imageWidth: number;
+  rootDir?: string;
+  responsive?: boolean;
+  optimized?: string[];
+  imageHeight?: number;
+  imageWidth?: number;
   className?: string;
-} & Omit<PictureProps, 'src' | 'srcSet' | 'sources'>;
+} & Omit<PictureProps, 'alt' | 'src' | 'srcSet' | 'sources'>;
 
 const Img: React.FC<Props> = ({
-  rootDir = './images/',
+  rootDir = './assets/',
+  responsive = true,
   src,
   optimized,
   imageWidth,
@@ -22,14 +23,25 @@ const Img: React.FC<Props> = ({
   ...props
 }) => {
   const absoluteSrc = rootDir + src;
-  const srcSet = imgSrcSet(absoluteSrc);
-
+  if (responsive) {
+    const srcSet = imgSrcSet(src, rootDir);
+    return (
+      <Picture
+        alt={absoluteSrc}
+        imageHeight={imageHeight}
+        imageWidth={imageWidth}
+        src={absoluteSrc}
+        srcSet={srcSet}
+        {...props}
+      />
+    );
+  }
   return (
     <Picture
+      alt={absoluteSrc}
       imageHeight={imageHeight}
       imageWidth={imageWidth}
       src={absoluteSrc}
-      srcSet={srcSet}
       {...props}
     />
   );

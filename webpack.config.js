@@ -9,6 +9,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = ({ NODE_ENV, APP_ENV = 'development' }) => {
   const isDevelopment = NODE_ENV === 'development';
@@ -17,30 +18,31 @@ module.exports = ({ NODE_ENV, APP_ENV = 'development' }) => {
   const environments = require('dotenv').config({
     path: path.resolve(__dirname, `./.env.${APP_ENV}`),
   }).parsed;
-  function getPublicPath(appEnv) {
-    const prefixes = ['https://web-frontend.styleshare.io'];
-    switch (appEnv) {
-      case 'production':
-        prefixes.push('prod');
-        break;
-      case 'canary':
-        prefixes.push('canary');
-        break;
-      case 'stage':
-        prefixes.push('stage');
-        break;
-      default:
-        prefixes.push(appEnv);
-        break;
-    }
-    return `${prefixes.join('/')}/`;
+  function getPublicPath() {
+    return './';
+    // const prefixes = ['https://web-frontend.styleshare.io'];
+    // switch (appEnv) {
+    //   case 'production':
+    //     prefixes.push('prod');
+    //     break;
+    //   case 'canary':
+    //     prefixes.push('canary');
+    //     break;
+    //   case 'stage':
+    //     prefixes.push('stage');
+    //     break;
+    //   default:
+    //     prefixes.push(appEnv);
+    //     break;
+    // }
+    // return `${prefixes.join('/')}/`;
   }
   return {
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
     entry: './src/index.tsx',
     output: {
-      path: isProduction ? path.resolve(__dirname, './build') : undefined,
+      path: isProduction ? path.resolve(__dirname, './dist') : undefined,
       pathinfo: isDevelopment,
       filename: isProduction ? '[name].[contenthash:8].js' : 'bundle.js',
       chunkFilename: isProduction ? '[id].[chunkhash:8].js' : '[id].js',
@@ -160,6 +162,12 @@ module.exports = ({ NODE_ENV, APP_ENV = 'development' }) => {
       new HTMLWebpackPlugin({
         title: '스타일쉐어',
         template: path.resolve(__dirname, './src/templates/index.ejs'),
+      }),
+      new CopyPlugin({
+        patterns: [{ from: 'public/assets', to: 'assets' }],
+        options: {
+          concurrency: 100,
+        },
       }),
       new webpack.EnvironmentPlugin({
         ...environments,
