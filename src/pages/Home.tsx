@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { Box } from '~components/common';
+import ItemTwoByTwoSliderContainer from '~containers/Home/ItemTwoByTwoSliderContainer';
+import useApi from '~hooks/useApi';
+import { getBrandInfoProxy } from '~services/base/experiment';
 
 const Container = styled(Box)(
   {
@@ -34,7 +37,18 @@ const Container = styled(Box)(
 );
 
 const Home: React.FC = () => {
-  return <Container>HELLO;</Container>;
+  const { loading: goodsLoading, data: goodsData, error: goodsError } = useApi(
+    getBrandInfoProxy,
+    14235,
+  );
+  if (goodsData == undefined || goodsError || goodsLoading) {
+    return null;
+  }
+  return (
+    <Container>
+      <ItemTwoByTwoSliderContainer />
+    </Container>
+  );
 };
 
 export default Home;

@@ -102,8 +102,8 @@ module.exports = ({ NODE_ENV, APP_ENV = 'development' }) => {
           ],
         },
         {
-          test: /\.(jpe?g|png|webp)$/,
-          exclude: /node_modules/,
+          test: /\.(jpe?g|png|webp|ttf|eot|svg|gif|woff)$/,
+          // exclude: /node_modules/,
           loader: 'file-loader',
           options: {
             publicPath: isProduction ? '' + 'assets/' : undefined,

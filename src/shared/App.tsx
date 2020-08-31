@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-// import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { Box } from '~components/common';
-import { Img } from '~components/Picture';
 import Home from '~pages/Home';
 import { lightTheme as desktopLightTheme } from '~styles/theme/desktop';
+
 const Container = styled(Box)(
   {
     borderRadius: '16px',
@@ -41,18 +41,8 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={desktopLightTheme}>
-        <Container
-          style={{
-            height: '100vh',
-            margin: '0 auto 0 auto',
-            maxHeight: '900px',
-            maxWidth: '414px',
-          }}
-        >
-          HOME
-          <Home />
-          <Img src={'iconArrowBack.png'} />
-          {/* <Route component={Home} path="/" exact /> */}
+        <Container>
+          <Route component={Home} path="/" exact />
         </Container>
       </ThemeProvider>
     );

@@ -196,3 +196,40 @@ export const imgSrcSet = (path: string, rootDir = './assets/'): string => {
     rootDir + fileName
   }@2x.${fileExtension} 2x, ${rootDir + fileName}@3x.${fileExtension} 3x`;
 };
+
+interface properties {
+  owner?: string;
+  variant?: string;
+  param?: string | number;
+}
+
+export const logEvent = (name: string, properties?: properties) => {
+  properties = properties || {};
+  if (!Object.prototype.hasOwnProperty.call(properties, 'owner')) {
+    properties['owner'] = process.env.OWNER;
+  }
+  if (!Object.prototype.hasOwnProperty.call(properties, 'variant')) {
+    properties['variant'] = process.env.VARIANT;
+  }
+  const concatProperties =
+    typeof properties === 'object' && properties !== null
+      ? '&' +
+        Object.entries(properties)
+          .map(
+            (entry) =>
+              `${encodeURIComponent(entry[0])}=${encodeURIComponent(entry[1])}`,
+          )
+          .join('&')
+      : '';
+  const deeplink = `stsh://analytics?event=${encodeURIComponent(
+    name,
+  )}${concatProperties}`;
+  if (navigator.userAgent.toLowerCase().indexOf('styleshare') !== -1) {
+    setTimeout(() => {
+      window.location.href = deeplink;
+    });
+  }
+  // } else {
+  //   amplitude.getInstance().logEvent(name, properties);
+  // }
+};
