@@ -1,10 +1,14 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { Box } from '~components/common';
 import ItemTwoByTwoSliderContainer from '~containers/Home/ItemTwoByTwoSliderContainer';
 import useApi from '~hooks/useApi';
+import { RootState } from '~reduxes/index';
+import { MeState } from '~reduxes/me/reducers';
 import { getBrandInfoProxy } from '~services/base/experiment';
 
 const Container = styled(Box)(
@@ -37,6 +41,13 @@ const Container = styled(Box)(
 );
 
 const Home: React.FC = () => {
+  const { meData, meStatus } = useSelector<
+    RootState,
+    Pick<MeState, 'meData' | 'meStatus'>
+  >(
+    (state) => ({ meData: state.me.meData, meStatus: state.me.meStatus }),
+    isEqual,
+  );
   const { loading: goodsLoading, data: goodsData, error: goodsError } = useApi(
     getBrandInfoProxy,
     14235,
@@ -46,6 +57,7 @@ const Home: React.FC = () => {
   }
   return (
     <Container>
+      <div>nickname: {meData && meData.nickname}</div>
       <ItemTwoByTwoSliderContainer />
     </Container>
   );

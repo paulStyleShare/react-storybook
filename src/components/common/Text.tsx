@@ -81,6 +81,7 @@ const Text = styled('p')<TextProps>(
     margin: 0,
   },
   system({
+    fontSize: true,
     wordBreak: true,
   }),
   compose(

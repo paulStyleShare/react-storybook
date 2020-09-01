@@ -1,0 +1,1 @@
+export const CHANGE_THEME = '[GLOBAL_NAVBAR] CHANGE_THEME';

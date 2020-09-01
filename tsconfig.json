@@ -22,6 +22,7 @@
       "~services/*": ["services/*"],
       "~styles/*": ["styles/*"],
       "~reduxes/*": ["store/reduxes/*"],
+      "~store/*": ["store/*"],
       "~utils/*": ["utils/*"],
       "~heads/*": ["heads/*"]
     },
